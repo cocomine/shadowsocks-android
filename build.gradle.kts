@@ -37,7 +37,7 @@ buildscript {
 allprojects {
     apply(from = "${rootProject.projectDir}/repositories.gradle.kts")
     group = "com.github.shadowsocks"
-    version = "5.3.4"
+    version = "5.3.5"
 }
 
 // skip uploading the mapping to Crashlytics

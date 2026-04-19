@@ -1,8 +1,12 @@
 plugins {
     id("com.android.library")
-    id("com.vanniktech.maven.publish")
+    id("com.vanniktech.maven.publish") apply false
     kotlin("android")
     id("kotlin-parcelize")
+}
+
+if (providers.gradleProperty("enableMavenPublish").orNull == "true") {
+    apply(plugin = "com.vanniktech.maven.publish")
 }
 
 setupCommon()

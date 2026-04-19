@@ -14,8 +14,16 @@ buildscript {
         gradlePluginPortal()
     }
 
+    val rn = the<VersionCatalogsExtension>().find("ssalibs")
+
     dependencies {
-        classpath(libs.android.gradle)
+        rn.ifPresentOrElse({
+            println("YESSSSSSS")
+            classpath(it.findLibrary("android-gradle-plugin").get())
+        },{
+            classpath(libs.android.gradle)
+        })
+        //classpath(libs.android.gradle)
         classpath(libs.dokka)
         classpath(libs.firebase.crashlytics.gradle)
         classpath(libs.google.oss.licenses)
@@ -28,6 +36,8 @@ buildscript {
 
 allprojects {
     apply(from = "${rootProject.projectDir}/repositories.gradle.kts")
+    group = "com.github.shadowsocks"
+    version = "5.3.4"
 }
 
 // skip uploading the mapping to Crashlytics
